@@ -35,7 +35,7 @@ selectedItems.forEach(item => {
             deleteJobTitle  = this.closest("ul").children[0].textContent;
             document.getElementById("deletingJobTitle").setAttribute("value", deleteJobTitle);  
         });
-        console.log(updateCName, updateSCName)
+
     }
 });
 

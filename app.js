@@ -49,10 +49,9 @@ axios.get(url)
         Fetch.find(function (err, reports) {
             if (reports.length === 0) {
                 Fetch.insertMany(loadedData);
-                console.log("Inserting Data")
             }
             if(err){
-                console.log(err);
+                return;
             }
         });
     })
@@ -67,14 +66,12 @@ Fetch.find(function (err, reports) {
                 subcategories.push(element.subcategory);
             }
         });
-        console.log("Inserting categories")
     }
     if(err){
-        console.log(err);
+        return;
     }
 })
 
-console.log(subcategories.includes() ,categories.includes())
 
 app.get("/", function (req, res) {
 
@@ -82,7 +79,7 @@ app.get("/", function (req, res) {
     function renderAll() {
         Fetch.find(function (err, reports) {
             if (err) {
-                console.log(err);
+                return;
             } else {
                 res.render("index", {
                     report: reports,
@@ -154,9 +151,8 @@ app.post("/update", function (req, res) {
             subcategory: req.body.selectedSC
         }
         Fetch.findOneAndUpdate(conditions, update, () => {
-            console.log("Updated");
+
         });
-        // console.log(updateC, updateSC, id)
         res.redirect("/");
         return;
     }
@@ -165,9 +161,8 @@ app.post("/update", function (req, res) {
             category: req.body.selectedC
         }
         Fetch.findOneAndUpdate(conditions, update, (err, data) => {
-            console.log("C updated")
+
         });
-        // console.log(id, updateSC, updateC);
         res.redirect("/");
         return;
     }
@@ -176,9 +171,8 @@ app.post("/update", function (req, res) {
             subcategory: req.body.selectedSC
         }
         Fetch.findOneAndUpdate(conditions, update, (err, data) => {
-            console.log("SC updated")
+
         });
-        // console.log(id, updateSC, updateC);
         res.redirect("/");
         return;
     }
@@ -200,25 +194,8 @@ app.post("/update", function (req, res) {
     // }
 });
 
-app.post("/deleteJobTitle", function (req, res) {
-    const jobTitle = req.body.deletingJobTitle;
-    const skillId = req.body.deletingTitleId;
-    const conditions = {
-        id: skillId
-    }
-    const update = {
-        used_by: jobTitle
-    }
-    Fetch.findOneAndUpdate(conditions, update, function (err, data) {
-        if (data) {
-            console.log(data);
-        }
-    });
-
-    res.redirect("/");
-});
-
-
-app.listen(3000, function () {
-    console.log("Server started");
-});
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+app.listen(port);
