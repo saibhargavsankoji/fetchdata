@@ -205,14 +205,6 @@ app.post("/update", function (req, res) {
 
 app.post("/search", function (req, res) {
     searchSkill = req.body.searchInput;
-    // Fetch.find({
-    //         skill : {
-    //             $regex: new RegExp(skillName)
-    //         }
-    //     },
-    //     function (err, data) {
-    //         console.log(data);
-    //     });
     res.redirect("/");
 });
 

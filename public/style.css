@@ -57,15 +57,17 @@ body {
 .button {
     padding: 10px;
     color: black;
-    border-radius: 15px;
+    border-radius: 20px;
     cursor: pointer;
     z-index: 10;
+    outline: none;
+    border: 0.5 solid black;
     background-color: transparent;
     transition: all 0.25s ease;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
     -webkit-transition: all 0.25s ease;
     -moz-transition: all 0.25s ease;
     -ms-transition: all 0.25s ease;
@@ -75,6 +77,12 @@ body {
 .button:hover{
     background-color: #417be4;
     color: #fff;
+    border: 0.5 solid transparent;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 #filter-div, #subFilterDiv {
@@ -159,7 +167,13 @@ body {
     padding: 0 20px;
     cursor: pointer;
 }
-
+.id{
+    width: 20%;
+}
+.id p{
+    font-size: 20px;
+    font-weight: bold;
+}
 .skill,
 .subcategory {
     flex-grow: 1;

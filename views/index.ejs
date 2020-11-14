@@ -66,10 +66,13 @@
                 <option value="<%= obj%>"><%=obj%></option>
                 <% }); %>
             </select>
-            <button type="submit" class="fliter-button button">Submit / Get Complete</button>
+            <button type="submit" class="fliter-button button">Submit / Get All</button>
         </form>
     </div>
     <div class="title-container">
+        <div class="title-div">
+            <h2>Id</h2>
+        </div>
         <div class="title-div">
             <h2>Skill</h2>
         </div>
@@ -83,6 +86,9 @@
     <% report.forEach(function(obj) { %>
     <div>
         <div class="container select">
+            <div class="id dataDiv">
+                <p> <%= obj.id %></p>
+            </div>
             <div class="skill dataDiv">
                 <p> <%= obj.skill %></p>
             </div>
