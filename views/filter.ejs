@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/filter" method="post">
+        <input type="text" name="category">
+        <input type="text" name="subcategory">
+        <input type="submit" name="submit">
+    </form>
+    <% fdata.forEach(element => { %>
+        <ul>
+            <li><%=element.id %></li>
+            <li><%=element.category %></li>
+            <li><%=element.subcategory %></li>
+            <li><%=element.skill%></li>
+        </ul>
+    <% }); %> 
+</body>
+</html>
