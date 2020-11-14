@@ -26,7 +26,7 @@ selectedItems.forEach(item => {
             }, 0.5);
         }
         const updateH2 = document.getElementById("updateH2");
-        updateH2.textContent = skillName;
+        updateH2.innerHTML = `${skillName}`;
         const updateCName = document.getElementById("updateCName").textContent = `Change/Update Category of ${skillName} `;
         const updateSCName = document.getElementById("updateSCName").textContent =  `Change/Update Sub Category of ${skillName}`;
         inputId.setAttribute("value", id);

@@ -39,6 +39,7 @@ const categories = [];
 const subcategories = [];
 let cat = "All";
 let subcat = "All";
+let searchSkill;
 
 axios.get(url)
     .then(response => {
@@ -50,7 +51,7 @@ axios.get(url)
             if (reports.length === 0) {
                 Fetch.insertMany(loadedData);
             }
-            if(err){
+            if (err) {
                 return;
             }
         });
@@ -67,14 +68,13 @@ Fetch.find(function (err, reports) {
             }
         });
     }
-    if(err){
+    if (err) {
         return;
     }
 })
 
 
 app.get("/", function (req, res) {
-
 
     function renderAll() {
         Fetch.find(function (err, reports) {
@@ -121,14 +121,34 @@ app.get("/", function (req, res) {
             })
         });
     }
-
+    if (searchSkill) {
+        Fetch.find({
+                skill: {
+                    $regex: new RegExp(searchSkill)
+                }
+            },
+            function (err, data) {
+                res.render("index", {
+                    report: data,
+                    categoriesArray: categories,
+                    subcategoriesArray: subcategories
+                })
+            });
+        searchSkill = "";
+        return;
+    }
     if (cat !== "All" || subcat !== "All") {
         filtered(cat, subcat);
+        if (searchSkill) {
+            searchSkill.length = 0;
+        }
     }
     if (cat === "All" && subcat === "All") {
         renderAll();
+        if (searchSkill) {
+            searchSkill.length = 0;
+        }
     }
-
 });
 
 app.post("/", function (req, res) {
@@ -180,22 +200,25 @@ app.post("/update", function (req, res) {
         res.redirect("/");
         return;
     }
-
-    // class Updat{
-    //     constructor(id, c, sc){
-    //         this.id = id;
-    //         this.c = c;
-    //         this.sc = sc;
-    //         this.check(c,sc)
-    //     }
-    //  check(c, sc) {
-    //      if(c !== "None")
-    //  }  
-    // }
 });
+
+
+app.post("/search", function (req, res) {
+    searchSkill = req.body.searchInput;
+    // Fetch.find({
+    //         skill : {
+    //             $regex: new RegExp(skillName)
+    //         }
+    //     },
+    //     function (err, data) {
+    //         console.log(data);
+    //     });
+    res.redirect("/");
+});
+
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 3000;
+    port = 3000;
 }
 app.listen(port);

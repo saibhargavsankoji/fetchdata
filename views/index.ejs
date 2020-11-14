@@ -46,9 +46,9 @@
             </div>
         </div>
     </div>
-    <div>
-        <form action="">
-            <input type="search" name="search" id="search">
+    <div class="search-div">
+        <form action="/search" method="POST">
+            <input type="search" name="searchInput" id="search-input" placeholder="Incremental search for Skill">
             <button type="submit" class="searchButton"><i class="fas fa-search"></i></button>
         </form>
     </div>
@@ -66,7 +66,7 @@
                 <option value="<%= obj%>"><%=obj%></option>
                 <% }); %>
             </select>
-            <button type="submit" class="fliter-button button">Submit</button>
+            <button type="submit" class="fliter-button button">Submit / Get Complete</button>
         </form>
     </div>
     <div class="title-container">
